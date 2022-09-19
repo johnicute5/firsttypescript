@@ -89,7 +89,7 @@ export const moveZeroesToEnd = () => {
   
   console.log("\n")
   console.log('2. ISBN 10 Validation')
-  console.log("Numbers: 048665088X"+"\n")
+  console.log("Numbers: 048665088X" + " \n ")
   console.log("Valid? :"+ isbnValidation('048665088X'))
   console.log("\n")
   console.log("3. Change it up!")
