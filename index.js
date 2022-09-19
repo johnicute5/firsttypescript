@@ -1,43 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkCondition = exports.loopPlane = exports.displayWheels = exports.addWheel = exports.addWheels = exports.addPlane = exports.Days = exports.testFunction = void 0;
-const testFunction = () => {
-    console.log("Hello to Typescript");
-};
-exports.testFunction = testFunction;
-var parent;
-parent = "myString";
-parent = 500;
-var nameArray = [];
-var otherArray = new Array(10);
-nameArray.push("myName");
-otherArray.push("newName");
-var Days;
-(function (Days) {
-    Days[Days["Monday"] = 0] = "Monday";
-    Days[Days["Tuesday"] = 1] = "Tuesday";
-    Days[Days["Wednesday"] = 2] = "Wednesday";
-    Days[Days["Thursday"] = 3] = "Thursday";
-    Days[Days["Friday"] = 4] = "Friday";
-    Days[Days["Saturday"] = 5] = "Saturday";
-    Days[Days["Sunday"] = 6] = "Sunday";
-})(Days = exports.Days || (exports.Days = {}));
-function addPlane2(data) {
-}
-var planeList = [];
-const addPlane = (data) => {
-    planeList.push(data);
-};
-exports.addPlane = addPlane;
-var myWheels = [];
+exports.moveZeroesToEnd = exports.changeItUp = exports.isbnValidation = exports.displayWheels = exports.addWheel = exports.addWheels = void 0;
+var city = [];
 const addWheels = (...wheelsArray) => {
     wheelsArray.forEach((item) => {
-        console.log(item);
+        city.push(item);
+        (0, exports.displayWheels)();
     });
 };
 exports.addWheels = addWheels;
 const addWheel = (wheel) => {
-    myWheels.push(wheel);
+    city.push(wheel);
     (0, exports.displayWheels)();
 };
 exports.addWheel = addWheel;
@@ -48,7 +21,7 @@ const displayWheels = () => {
             list.removeChild(list.firstChild);
         }
     }
-    myWheels.forEach((item) => {
+    city.forEach((item) => {
         if (list) {
             let li = document.createElement("li");
             li.innerText = item;
@@ -57,71 +30,69 @@ const displayWheels = () => {
     });
 };
 exports.displayWheels = displayWheels;
-//addWheels("small wheel", "medium wheel", "large wheel");
-const loopPlane = () => {
-    // forEach
-    planeList.forEach((item) => {
-        console.log("forEach");
-        console.log(item);
-    });
-    // map
-    planeList.map((item) => {
-        console.log("map");
-        console.log(item);
-    });
-    // for loop
-    for (let i = 0; i < planeList.length; i++) {
-        console.log("for loop");
-        console.log(planeList[i]);
+// testFunction();
+// ISBN – 10 Validation
+const isbnValidation = (num) => {
+    var number = num.length;
+    if (number != 10) {
+        return false;
     }
-    // while loop and do while
-    /*  let i = 0;
-     while(i < planeList.length) {
-         console.log("while loop")
-         console.log(planeList[i])
-         i++
-     } */
-    // enhanced for loop
-    for (let plane of planeList) {
-        console.log("enhanced for loop");
-        console.log(plane);
+    let sum = 0;
+    for (let i = 0; i < 9; i++) {
+        let ind = num[i] - 0;
+        if (0 > ind || 9 < ind) {
+            return false;
+        }
+        sum += (ind * (number - i));
     }
-    // index
-    for (let ind in planeList) {
-        console.log("index loop");
-        console.log(planeList[ind]);
+    let lastInd = num[9];
+    if (lastInd != 'X' && (lastInd < 0 || lastInd > 9)) {
+        return false;
     }
+    sum += ((lastInd == 'X') ? 10 : (lastInd - 0));
+    return (sum % 11 === 0);
 };
-exports.loopPlane = loopPlane;
-const checkCondition = () => {
-    var condition = true;
-    var s = "first";
-    if (condition) {
+exports.isbnValidation = isbnValidation;
+//change it up
+const changeItUp = (str) => {
+    var array = str.split('');
+    const length = array.length;
+    var newArray = [];
+    for (var i = 0; i < length; i++) {
+        if (/^[a-yA-Y]+$/.test(array[i])) {
+            var next_letter = String.fromCharCode((array[i]).charCodeAt(0) + 1);
+            newArray.push("eiou".includes(next_letter) ? next_letter.toUpperCase() : next_letter.toLowerCase());
+        }
+        else if (/^[zZ]+$/.test(array[i])) {
+            newArray.push('A');
+        }
+        else {
+            newArray.push(array[i]);
+        }
     }
-    else if (!condition) {
-    }
-    else {
-    }
-    switch (s) {
-        case "first":
-            break;
-        case "second":
-            break;
-        default:
-    }
+    return newArray.join('');
 };
-exports.checkCondition = checkCondition;
-var tuple = ["myName", 1];
-var tuple2 = ["first", 1, 2];
-var plane1 = {
-    name: "JetLee",
-    model: "FighterJet"
+exports.changeItUp = changeItUp;
+//Move number 0 to end
+const moveZeroesToEnd = () => {
+    var nums = [1, 2, true, 0, "johnico", 0, 4, 0, 6, 0, 2];
+    console.log('Original: ' + nums);
+    for (var i = nums.length - 1; i >= 0; i--) {
+        //splice and push - removing 0 and putting to last index of array
+        nums[i] === 0 && nums.splice(i, 1) && nums.push(0);
+    }
+    console.log('Changed : ' + nums);
 };
-var plane2 = {
-    name: "Bruce Lee",
-    model: "Jumbo Jet"
-};
-(0, exports.addPlane)(plane1);
-(0, exports.addPlane)(plane2);
-(0, exports.loopPlane)();
-(0, exports.testFunction)();
+exports.moveZeroesToEnd = moveZeroesToEnd;
+console.log("I can do it");
+console.log("\n");
+console.log('2. ISBN 10 Validation');
+console.log("Numbers: 048665088X" + "\n");
+console.log("Valid? :" + (0, exports.isbnValidation)('048665088X'));
+console.log("\n");
+console.log("3. Change it up!");
+console.log("Original: Cat30 \n");
+console.log("Changed : " + (0, exports.changeItUp)('Cat30'));
+console.log("\n");
+console.log("4. Moving zeroes to the end");
+(0, exports.moveZeroesToEnd)();
