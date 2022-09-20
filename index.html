@@ -1,14 +1,10 @@
 <script>exports = {__esModule:true}</script>
 <script src="./index.js"></script>
 
-<input type="text" id="city" placeholder="Enter City Name" />
-<input type="text" id="country" placeholder="Enter country Name" />
-<input type="number" id="population" placeholder="Enter Population" />
-<button onclick="{
-    addWheels(document.getElementById('city').value),
-    addWheels(document.getElementById('country').value),
-    addWheels(document.getElementById('population').value)
-    }" >Add City</button>
+<input type="text" name="city[]" placeholder="Enter City Name" />
+<input type="text" name="city[]" placeholder="Enter country Name" />
+<input type="number" name="city[]" placeholder="Enter Population" />
+<button onclick="addWheels()" >Add City</button>
 
 <div class="seach">
     <br>

@@ -1,14 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.moveZeroesToEnd = exports.changeItUp = exports.isbnValidation = exports.displayWheels = exports.addWheel = exports.addWheels = void 0;
+exports.moveZeroesToEnd = exports.changeItUp = exports.isbnValidation = exports.displayWheels = exports.addWheel = void 0;
 var city = [];
-const addWheels = (...wheelsArray) => {
-    wheelsArray.forEach((item) => {
-        city.push(item);
-        (0, exports.displayWheels)();
-    });
-};
-exports.addWheels = addWheels;
+function addWheels() {
+    var input = document.getElementsByName('city[]');
+    // wheelsArray.map((ind) => {
+    //     console.log(ind)
+    //     city.push(ind);
+    //     displayWheels();
+    // })
+    var k = "";
+    for (var i = 0; i < input.length; i++) {
+        var j = input[i];
+        k = k + j.value + " ";
+    }
+    console.log(k);
+    city.push(k);
+    (0, exports.displayWheels)();
+}
 const addWheel = (wheel) => {
     city.push(wheel);
     (0, exports.displayWheels)();
@@ -87,8 +96,9 @@ exports.moveZeroesToEnd = moveZeroesToEnd;
 console.log("I can do it");
 console.log("\n");
 console.log('2. ISBN 10 Validation');
-console.log("Numbers: 048665088X" + " \n ");
-console.log("Valid? :" + (0, exports.isbnValidation)('048665088X'));
+const input = prompt("Enter Numbers: ");
+console.log("Numbers: " + input);
+console.log("Valid? :" + (0, exports.isbnValidation)(input));
 console.log("\n");
 console.log("3. Change it up!");
 console.log("Original: Cat30 \n");
