@@ -2,11 +2,7 @@
 var city:string[] = [];
 function addWheels(){
     var input = document.getElementsByName('city[]');
-    // wheelsArray.map((ind) => {
-    //     console.log(ind)
-    //     city.push(ind);
-    //     displayWheels();
-    // })
+
     var k = ""
     for(var i = 0; i < input.length;i++){
         var j = input[i]
@@ -14,12 +10,14 @@ function addWheels(){
     }
     console.log(k)
     city.push(k);
-    displayWheels();
-    
+    displayWheels(); 
 }
+
 export const addWheel = (wheel:any) => {
     city.push(wheel);
     displayWheels();
+    localStorage.setItem("cart", JSON.stringify(wheel));
+    
 }
 export const displayWheels = () => {
     let list = document.getElementById('wheelList');
@@ -95,12 +93,13 @@ export const moveZeroesToEnd = () => {
     }
     console.log('Changed : '+ nums)
  };
+
+
   console.log("I can do it")
   console.log("\n")
   console.log('2. ISBN 10 Validation')
-  const input = prompt("Enter Numbers: ");
-  console.log("Numbers: "+ input)
-  console.log("Valid? :"+ isbnValidation(input))
+  console.log("Numbers: "+ "1112223339")
+  console.log("Valid? :"+ isbnValidation('1112223339'))
   console.log("\n")
   console.log("3. Change it up!")
   console.log("Original: Cat30 \n") 
@@ -108,3 +107,4 @@ export const moveZeroesToEnd = () => {
   console.log("\n")
   console.log("4. Moving zeroes to the end")
   moveZeroesToEnd();
+
